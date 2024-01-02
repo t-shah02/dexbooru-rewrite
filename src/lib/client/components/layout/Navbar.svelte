@@ -2,14 +2,15 @@
 	import { page } from '$app/stores';
 	import { Button, DarkMode, NavBrand, NavHamburger, NavLi, NavUl, Navbar } from 'flowbite-svelte';
 	import ProfileDropdown from './ProfileDropdown.svelte';
+	// import Icon from './../../../../../static/icon.png';
 
 	const currentPath = $page.url.pathname;
+	import Icon from '/favicon.png'; // Check if this resolves the issue
 </script>
-
 <Navbar class="sticky top-0 z-50">
 	<NavBrand href="/">
 		<img
-			src="icon.png"
+			src={Icon}
 			class="mr-3 h-6 sm:h-9"
 			alt="Dexbooru Logo"
 		/>
