@@ -10,6 +10,7 @@
 	export let orderBy: TPostOrderByColumn = 'createdAt';
 	export let ascending: boolean = false;
 	export let noPostsLeft: boolean = false;
+	
 
 	onMount(() => {
 		const paginationContainer: HTMLDivElement | null =
@@ -33,12 +34,16 @@
 		orderBy,
 		ascending
 	};
+
+
 	
 	const previousPageUrl = buildUrl($page.url.pathname, previousPageLinkParams);
 	const nextPageUrl = buildUrl($page.url.pathname, nextPageLinkParams);
+	const homePageUrl = '/';
 </script>
 
 <div id="pagination-container" class="flex space-x-3 justify-center {noPostsLeft && 'mt-5'}">
+
 	{#if (pageNumber - 1 >= 0 || noPostsLeft) && pageNumber !== 0}
 		<PaginationItem href={previousPageUrl.href} large class="flex items-center previous-page-link">
 			<ArrowLeftSolid class="mr-2 w-5 h-5" />
@@ -51,5 +56,12 @@
 			Next
 			<ArrowRightSolid class="ml-2 w-5 h-5" />
 		</PaginationItem>
+	{/if}
+
+	{#if noPostsLeft || pageNumber >= 4} 
+	<PaginationItem href={homePageUrl} large class="flex items-center next-page-link">
+		Return to Home
+		<ArrowRightSolid class="ml-2 w-5 h-5" />
+	</PaginationItem>
 	{/if}
 </div>

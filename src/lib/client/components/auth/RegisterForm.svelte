@@ -52,7 +52,7 @@
 		</h3>
 		<Label class="space-y-2">
 			<span>Enter your username</span>
-			<div class="flex space-x-2">
+			<div class="flex space-x-1">
 				<Input
 					bind:value={username}
 					on:input={onUsernameChange}
@@ -81,7 +81,6 @@
 					placeholder="Your email"
 					required
 				/>
-
 				<FieldRequirements
 					requirementsPlacement="right-end"
 					requirementsType="email"
@@ -91,10 +90,10 @@
 				/>
 			</div>
 		</Label>
-		<Label class="space-y-1">
+		<Label class="space-y-2">
 			<span>Enter your password</span>
 			<div class="relative">
-				<div class="flex space-x-2">
+				<div class="flex space-x-1">
 					<Input
 						bind:value={password}
 						on:input={onPasswordChange}
@@ -156,7 +155,7 @@
 		{/if}
 		<div class="text-sm font-medium text-gray-500 dark:text-gray-300">
 			Already have an account? <a
-				href="/register"
+				href="/login" 
 				class="text-primary-700 hover:underline dark:text-primary-500"
 			>
 				Login
