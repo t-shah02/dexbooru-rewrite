@@ -20,18 +20,19 @@
 	const getLabelsOnCurrentPage = async (event: Event, pressedLoadingMore: boolean) => {
 		const target = event.target as HTMLButtonElement;
 		const letter = pressedLoadingMore ? selectedLabel : target.innerText;
+
+		loadingLabels = true;
 		if (!pressedLoadingMore) {
+			labels = [];
 			pageNumber = 0;
 			finishedLabelPagination = false;
 			selectedLabel = target.innerText;
 		}
 
-		loadingLabels = true;
 		const response =
 			labelType === 'tag'
 				? await getTags(letter, pageNumber)
 				: await getArtists(letter, pageNumber);
-		loadingLabels = false;
 
 		if (response.ok) {
 			const rawLabels: (Tag & Artist)[] = await response.json();
@@ -46,6 +47,8 @@
 		} else {
 			toast.push(`There was an error while loading the ${labelType}s`, FAILURE_TOAST_OPTIONS);
 		}
+
+		loadingLabels = false;
 	};
 </script>
 
@@ -69,7 +72,6 @@
 			{#if labels.length > 0}
 				{#each labels as label}
 					<a
-						data-sveltekit-reload
 						class="text-center inline-flex justify-center space-x-2 border rounded p-2 leading-none dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
 						href="/posts/{labelType}/{label}"
 					>
