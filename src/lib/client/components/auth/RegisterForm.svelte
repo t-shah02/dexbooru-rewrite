@@ -45,7 +45,6 @@
 			bind:input={confirmedPassword}
 			bind:comparisonInput={password}
 		/>
-
 		<ProfilePictureUpload />
 
 		<Button type="submit" class="w-full">Register</Button>

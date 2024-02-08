@@ -7,6 +7,7 @@
 	import { onDestroy } from 'svelte';
 
 	export let noPostsLeft: boolean = false;
+	
 
 	let previousPageUrl: URL;
 	let nextPageUrl: URL;
@@ -26,6 +27,7 @@
 			};
 			previousPageUrl = buildUrl($page.url.pathname, previousPageLinkParams);
 			nextPageUrl = buildUrl($page.url.pathname, nextPageLinkParams);
+      const homePageUrl = '/';
 		}
 	});
 
@@ -53,5 +55,12 @@
 				<ArrowRightSolid class="ml-2 w-5 h-5" />
 			</PaginationItem>
 		{/if}
+    {#if noPostsLeft} 
+	    <PaginationItem href={homePageUrl} large class="flex items-center next-page-link">
+		    Return to Home
+		   <ArrowRightSolid class="ml-2 w-5 h-5" />
+	    </PaginationItem>
+	  {/if}
 	</div>
 {/if}
+
